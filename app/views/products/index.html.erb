@@ -1,0 +1,33 @@
+<% if current_user.has_role? :seller %>
+
+<h1>Products</h1>
+
+<%= link_to "New product", new_product_path %>
+
+<div class="col-md-6 col-md-offset-3">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Price</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @products.each do |product| %>
+				<tr>
+					<td><%= product.title %></td>
+					<td><%= product.price %></td>
+					<td>
+						<%= link_to "Edit", edit_product_path(product) %>
+						<%= button_to "Delete", product_path(product), method: :delete %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<% else %>
+  <h1>this page is only for seller</h1>
+  <%= link_to "Back to Products", root_path %>
+<% end%>

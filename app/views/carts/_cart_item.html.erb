@@ -1,0 +1,41 @@
+<% if !@lineitem.nil? && @lineitem.errors.any? %>
+	<ul>
+		<% @lineitem.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @lineitems.size>0 %>
+	<% @lineitems.each do |item| %>
+		<div class="well">
+			<div class="row">
+				<div class="col-sm-8">
+					<h3><%= item.product.title %></h3>
+				</div>
+				<div class="col-sm-4">
+					<div class="pull-right">
+					<%= form_for(item, remote: true) do |f| %>
+						<%= f.hidden_field :product_id, value: item.product.id %>
+						<h5><%= item.product.price %></h5>
+						<div class="form-group">
+							<%= f.text_field :quantity, value: item.quantity.to_i, min: 1, class: 'form-control' %>
+						</div>
+						<div class="btn-group">
+							<%= f.submit "Update Quantity", class: 'btn btn-primary' %></div>     
+						<span>Total Price: <%= item.total_price %></span>
+					<% end %>
+           				<div>
+							<%= button_to "Delete", item, method: :delete, remote: true, class: 'btn btn-danger'  %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+	<div>
+		<%= button_to "Buy all items", 	 %>
+	</div>
+<% else %>
+	
+<% end %>
