@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_08_105040) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_10_144354) do
   create_table "lineitems", force: :cascade do |t|
     t.integer "product_id"
     t.integer "order_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_105040) do
     t.string "shipping"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -72,5 +74,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_105040) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "users"
 end

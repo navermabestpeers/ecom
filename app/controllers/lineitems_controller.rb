@@ -3,6 +3,7 @@ class LineitemsController < ApplicationController
     @order = current_order
     @lineitem = @order.lineitems.new(lineitem_params)
     @order.save
+    current_user.orders << @order
     session[:order_id] = @order.id
   end
   
@@ -23,6 +24,6 @@ class LineitemsController < ApplicationController
   private
   
   def lineitem_params
-    params.require(:lineitem).permit(:product_id, :quantity)      
+    params.require(:lineitem).permit(:product_id, :quantity, :user_id)      
   end
 end

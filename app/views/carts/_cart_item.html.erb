@@ -24,18 +24,18 @@
 						<div class="btn-group">
 							<%= f.submit "Update Quantity", class: 'btn btn-primary' %></div>     
 						<span>Total Price: <%= item.total_price %></span>
+						<%= f.hidden_field :user_id, value: current_user %>
 					<% end %>
-           				<div>
+           <div>
 							<%= button_to "Delete", item, method: :delete, remote: true, class: 'btn btn-danger'  %>
 						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	<% end %>
-	<div>
-		<%= button_to "Buy all items", 	 %>
-	</div>
+	<%= link_to "Proceed to checkout", orders_path %>
 <% else %>
 	
 <% end %>

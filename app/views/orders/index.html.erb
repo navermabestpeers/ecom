@@ -1,11 +1,11 @@
 <h2>All Orders</h2>
 
 <% @orders.each do |order| %>
-  <p>Name: <%= order.id %></p>
+  <p>Order Id: <%= order.id %></p>
   <p>Line Items: </p>
   <ul>
     <% order.lineitems.each do |item| %>
-    <li><%= item.quantity %> x <%= item.product.name %></li>
+    <li><%= item.quantity %> x <%= item.product.title %></li>
     <% end %>
   </ul>
-<% end
+<% end %>

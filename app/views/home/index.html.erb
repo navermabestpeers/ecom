@@ -10,7 +10,6 @@
 				<div class="pull-right">
 				<%= form_for(@lineitem, remote: true) do |f| %>
 					<%= f.hidden_field :product_id, value: product.id %>
-					<%= f.hidden_field :order_id, value: order.id %>
 					<h5><%= product.price %></h5>
 					<div class="form-group">
 						<%= f.text_field :quantity, value: 1, min: 1, class: 'form-control' %>
@@ -22,10 +21,5 @@
 		</div>
 	</div>
 <% end %>
-
-<div>
-	
-</div>
-
 
 

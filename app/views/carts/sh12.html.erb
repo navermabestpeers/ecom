@@ -1,0 +1,19 @@
+<h2>Cart show</h2>
+<ul>
+  <% @cart.lineitems.each do |lineitem| %>
+    <li>Item: <%= lineitem.product.title %>/ Price: <%= number_to_currency(lineitem.product.price) %>/ Quantity: <%= lineitem.quantity %>/ Total Price: <%= number_to_currency(lineitem.total_price) %>
+    <ul>
+      <li>
+        <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post %>
+        <%= link_to "Reduce one", line_item_reduce_path(:id => line_item), method: :post %>
+      </li>
+      <li>
+        <%= link_to "Remove item", line_item_path(line_item), method: :delete %>
+      </li>
+    </ul>
+    #
+  <% end %>
+</ul>
+<h3>Sub total: <%= number_to_currency(@cart.sub_total) %></h3>
+# See Order section below for explanation of new_order_path
+<%= link_to "Proceed to checkout" %><br>

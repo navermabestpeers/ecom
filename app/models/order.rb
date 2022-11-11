@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-	has_many :lineitems
+	has_many :lineitems, dependent: :destroy
 	before_save :set_subtotal
 
 	def subtotal
