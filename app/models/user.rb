@@ -6,6 +6,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :products
   has_many :orders
+  has_one :address
+  
+  accepts_nested_attributes_for :address
          
   after_create :assign_default_role
 

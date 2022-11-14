@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'payments/index'
+  get 'payments/pay'
+  get 'payment/index'
+  get 'payment/pay'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
  
@@ -8,5 +12,7 @@ Rails.application.routes.draw do
   resource :carts, only: [:show]
   root "home#index"
   #resources :products
-  resources :orders
+  resources :orders do
+    resources :payments
+  end
 end

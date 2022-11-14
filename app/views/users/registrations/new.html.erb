@@ -47,6 +47,43 @@
                   <%= f.collection_radio_buttons :role_ids, Role.all, :id, :name %>
                 </div>
 
+                <%= f.fields_for :profile do |builder| %>
+                    <hr />
+
+                    <h2>Address Details</h2>
+
+                    <div class="field">
+                      <%= builder.label :address_1 %><br />
+                      <%= builder.text_field :address_1 %>
+                    </div>
+
+                    <div class="field">
+                      <%= builder.label :address_2 %><br />
+                      <%= builder.text_field :address_2 %>
+                    </div>
+
+                    <div class="field">
+                      <%= builder.label :city %><br />
+                      <%= builder.text_field :city %>
+                    </div>
+
+                    <div class="field">
+                      <%= builder.label :state %><br />
+                      <%= builder.text_area :state %><br />
+                    </div>
+
+                    <div class="field">
+                      <%= builder.label :country %><br />
+                      <%= builder.text_area :country %><br />
+                    </div>
+
+                    <div class="field">
+                      <%= builder.label :postal_code %><br />
+                      <%= builder.text_area :postal_code %><br />
+                    </div>
+
+                  <% end %>
+
                 <div class="actions">
                   <%= f.submit "Sign up" %>
                 </div>
