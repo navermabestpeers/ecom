@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :orders do
     resources :payments
   end
+  resources :payments
 end

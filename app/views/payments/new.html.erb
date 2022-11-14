@@ -1,6 +1,6 @@
 <%= form_with model: @payment do |form| %>
     <div>
-      <%= form.hidden_field :order_id %>
+      <%= form.hidden_field :order_id , value: current_order.id %>
       <%= form.label :payment_mode %><br>
       <%= form.select :payment_mode, ['COD', 'Debit-card', 'UPI'], selected: 'public' %>
     </div>
