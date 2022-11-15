@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   get 'payments/index'
   get 'payments/pay'
   get 'payment/index'
@@ -6,7 +7,9 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
  
-  resources :products
+  resources :products do
+    resources :reviews
+  end
   resources :lineitems
   # Defines the root path route ("/")
   resource :carts, only: [:show]
@@ -16,4 +19,6 @@ Rails.application.routes.draw do
     resources :payments
   end
   resources :payments
+
+ 
 end
