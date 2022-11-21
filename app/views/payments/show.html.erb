@@ -1,7 +1,11 @@
-<p>Your order no. <%= current_order.id %> has been placed.</p>
-
-    <% current_order.lineitems.each do |item| %>
+<p>Your order no. <%= @order.id %> has been placed.</p>
+<p>Your order status. <%= @order.status %> </p>
+    <% @order.lineitems.each do |item| %>
     <li><%= item.quantity %> x <%= item.product.title %></li>
     <% end %>
 
-Total Price = <%= current_order.subtotal %>
+Total Price = <%= @order.subtotal %>
+<br>
+<strong>Cancel your order</strong>
+
+<%= link_to 'Cancel order', cancel_order_path(@order) %>

@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
 
   def show
-    @orders = current_user.orders
+    @order = Order.last
   end
   
   def new
@@ -10,10 +10,9 @@ class PaymentsController < ApplicationController
 
   def create
    @payment =  Payment.new(payments_params)
-    if @payment.save
-      redirect_to @payment
-    else
-      render :new, status: :unprocessable_entity
+    if @payment.save 
+      redirect_to @payment    
+      session.delete(:order_id)
     end
   end
   

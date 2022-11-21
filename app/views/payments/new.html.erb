@@ -4,8 +4,10 @@
       <%= form.label :payment_mode %><br>
       <%= form.select :payment_mode, ['COD', 'Debit-card', 'UPI'], selected: 'public' %>
     </div>
-    
+   
 	<%= form.submit "Pay Now" %>
+  
+  
 <% end %>
 <%= link_to "Add address", edit_user_registration_path %>
   

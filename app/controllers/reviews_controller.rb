@@ -1,73 +1,42 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
-  before_action :set_product
-  # GET /reviews or /reviews.json
-  def index
-    @reviews = Review.all
-  end
-
-  # GET /reviews/1 or /reviews/1.json
-  def show
-  end
-
-  # GET /reviews/new
-  def new
-    @review = Review.new
-  end
-
-  # GET /reviews/1/edit
-  def edit
-  end
-
-  # POST /reviews or /reviews.json
   def create
-    @review = Review.new(review_params)
-    @review.user_id = current_user.id
-    @review.product_id = @product.id
-      
-    if @review.save
-      redirect_to root_path
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
+    @product = Product.find(params[:product_id])
+    @review = @product.reviews.create(review_params)
+    redirect_to product_path(@product)
+  end  
 
-  # PATCH/PUT /reviews/1 or /reviews/1.json
+  def edit
+    @product = Product.find(params[:product_id])
+    @review = @product.reviews.find(params[:id])
+  end  
+
   def update
-    respond_to do |format|
+    @product = Product.find(params[:product_id])
+    @review = @product.reviews.find(params[:id])
       if @review.update(review_params)
-        format.html { redirect_to review_url(@review), notice: "Review was successfully updated." }
-        format.json { render :show, status: :ok, location: @review }
+        flash[:success] = "Object was successfully updated"
+        redirect_to @product
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+        flash[:error] = "Something went wrong"
+        render 'edit'
       end
-    end
   end
-
-  # DELETE /reviews/1 or /reviews/1.json
+  
   def destroy
-    @review.destroy
-
-    respond_to do |format|
-      format.html { redirect_to reviews_url, notice: "Review was successfully destroyed." }
-      format.json { head :no_content }
+    @product = Product.find(params[:product_id])
+    @review = @product.reviews.find(params[:id])
+    if @review.destroy
+      flash[:success] = 'Object was successfully deleted.'
+      redirect_to product_path(@product)
+    else
+      flash[:error] = 'Something went wrong'
+      redirect_to product_path(@product)
     end
   end
+  
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_review
-      @review = Review.find(params[:id])
-    end
-    
-    def set_product
-      @product = Product.find_by(params[:product_id])
-    end
-
-    # Only allow a list of trusted parameters through.
     def review_params
       params.require(:review).permit(:rating, :comment)
-    end
+    end  
 end

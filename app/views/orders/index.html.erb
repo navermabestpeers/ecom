@@ -8,4 +8,8 @@
     <li><%= item.quantity %> x <%= item.product.title %></li>
     <% end %>
   </ul>
+  <p>Order status: <%= order.status %></p>
+  <% if order.status == "shipped" %>
+    <%= link_to 'Cancel order', cancel_order_path(order) %>
+  <% end %>
 <% end %>

@@ -1,21 +1,20 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Ecommerce</a>
+    <a class="navbar-brand" href="<%= root_path %>">Ecommerce</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="<%= root_path %>">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" >Link</a>
+         <li class="nav-item">
+          <% if user_signed_in? %>
+          <a class="nav-link active" aria-current="page" href="<%= orders_path %>">Your orders</a>
+          <%end%>
         </li>
-        
-        
       </ul>
-
       <% if user_signed_in? %>
       <div class="d-flex">
         <a class="btn btn-outline-success"> <%= button_to "Signout", destroy_user_session_path, method: :delete %></a>

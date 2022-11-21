@@ -1,27 +1,15 @@
-<%= form_for([@movie, review]) do |form| %>
-  <% if review.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
-
-      <ul>
-        <% review.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
+<%= form_with model: [@product, @review] do |form| %>
+  <p>
     <%= form.label :rating, style: "display: block" %>
     <%= form.number_field :rating %>
-  </div>
+  </p>
 
-  <div>
+  <p>
     <%= form.label :comment, style: "display: block" %>
     <%= form.text_area :comment %>
-  </div>
+  </p>
 
-  <div>
+  <p>
     <%= form.submit %>
-  </div>
+  </p>
 <% end %>

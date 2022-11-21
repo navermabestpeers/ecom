@@ -11,4 +11,9 @@ class HomeController < ApplicationController
       @avg_review = @reviews.average(:rating).round(2)
     end
   end
+  
+  def show
+    @product = Product.find(params[:id])
+    @review = Review.new
+  end
 end
