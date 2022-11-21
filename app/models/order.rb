@@ -2,7 +2,7 @@ class Order < ApplicationRecord
 	has_many :lineitems, dependent: :destroy
   has_many :payments
 	before_save :set_subtotal
-  after_create :assign_default_status
+  after_commit :assign_default_status
 
   enum status: %i[shipped being_packed complete cancelled]
 

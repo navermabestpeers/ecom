@@ -3,7 +3,9 @@ class LineitemsController < ApplicationController
     @order = current_order
     @lineitem = @order.lineitems.new(lineitem_params)
     @order.save
-    current_user.orders << @order
+    if user_signed_in?
+      current_user.orders << @order
+    end
     session[:order_id] = @order.id
   end
   
