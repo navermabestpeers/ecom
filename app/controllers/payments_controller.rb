@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-   @payment =  Payment.new(payments_params)
+    @payment =  Payment.new(payments_params)
     if @payment.save 
       redirect_to @payment    
       session.delete(:order_id)
@@ -18,6 +18,6 @@ class PaymentsController < ApplicationController
   private
   
     def payments_params
-      params.require(:payment).permit(:payment_mode).merge(order_id: current_order.id)
+      params.require(:payment).permit(:payment_mode,:order_id).merge(order_id: current_order.id)
     end
 end
