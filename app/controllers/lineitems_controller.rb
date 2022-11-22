@@ -14,7 +14,7 @@ class LineitemsController < ApplicationController
   def update
     @order = current_order
     @lineitem = @order.lineitems.find(params[:id])
-    @lineitem.update(lineitem_params)
+    @lineitem.update!(lineitem_params)
     @lineitems = @order.lineitems
   end
 
@@ -28,6 +28,6 @@ class LineitemsController < ApplicationController
   private
   
   def lineitem_params
-    params.require(:lineitem).permit(:product_id, :quantity, :user_id)      
+    params.require(:lineitem).permit(:product_id, :quantity)      
   end
 end
