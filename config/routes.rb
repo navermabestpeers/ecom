@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'payment/pay'
   devise_for :users
   
- 
+  root "home#index"
+  
   resources :products do
     resources :reviews
   end
@@ -13,14 +14,16 @@ Rails.application.routes.draw do
   resources :lineitems
   
   resource :carts, only: [:show]
-  root "home#index"
+  
   
 
   resources :orders do
       member do
+        get :shipped        
+        get :being_packed
+        get :complete
         get :cancel
       end
-    resources :payments
   end
 
   #get '/orders/:id', to: 'orders#cancel' , as: 'order'

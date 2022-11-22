@@ -1,6 +1,12 @@
 <h2>All Orders</h2>
-
+<% if current_user.has_role? :seller %>
+    <div>
+      Total Order Count <%= Order.count %><br>
+      Total revenue generated <%= Order.sum(:subtotal)%>
+    </div>
+<% end %>
 <% @orders.each do |order| %>
+  
   <p>Order Id: <%= order.id %></p>
   <p>Line Items: </p>
   <ul>
@@ -11,5 +17,12 @@
   <p>Order status: <%= order.status %></p>
   <% if order.status == "shipped" %>
     <%= link_to 'Cancel order', cancel_order_path(order) %>
+  <% end %>
+  <% if current_user.has_role? :seller %>
+    <div>
+      <%= link_to 'shipped', shipped_order_path(order) %>
+      <%= link_to 'being packed', being_packed_order_path(order) %>
+      <%= link_to 'complete', complete_order_path(order) %>
+    </div>
   <% end %>
 <% end %>

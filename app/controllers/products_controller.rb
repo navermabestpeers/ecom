@@ -4,6 +4,11 @@ class ProductsController < ApplicationController
     @products = current_user.products.all
   end  
 
+  def show
+    @product = Product.find(params[:id])
+    @review = Review.new
+  end
+
   def new
     @product = current_user.products.new
   end
@@ -15,11 +20,6 @@ class ProductsController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def show
-    @product = Product.find(params[:id])
-    @review = Review.new
   end
 
   def edit

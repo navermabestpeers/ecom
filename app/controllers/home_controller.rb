@@ -2,8 +2,6 @@ class HomeController < ApplicationController
   def index
     @products = Product.all
     @lineitem = current_order.lineitems.new
-    #@reviews = Review.find_by(product_id: @product)
-    @reviews = Review.where(product_id: @product).order("created_at DESC")
 
     if @reviews.blank?
       @avg_review = 0
@@ -12,8 +10,9 @@ class HomeController < ApplicationController
     end
   end
   
-  def show
-    @product = Product.find(params[:id])
-    @review = Review.new
-  end
+  # def show
+  #   @product = Product.find(params[:id])
+  #   @review = Review.new
+  # end
+  
 end

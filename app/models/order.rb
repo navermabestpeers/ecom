@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 	before_save :set_subtotal
   after_commit :assign_default_status
 
-  enum status: %i[shipped being_packed complete cancelled]
+  enum status: %i[processing shipped being_packed complete cancelled]
 
 	def subtotal
 		lineitems.collect {|lineitem| lineitem.valid? ? (lineitem.unit_price*lineitem.quantity) : 0}.sum
@@ -16,7 +16,7 @@ class Order < ApplicationRecord
 		end
 
     def assign_default_status
-      self.status = "shipped"
+      self.status = "processing"
     end
 end
 

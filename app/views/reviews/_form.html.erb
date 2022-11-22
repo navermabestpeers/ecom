@@ -1,14 +1,13 @@
 <%= form_with model: [@product, @review] do |form| %>
+  <%= form.hidden_field :product_id, value: @product.id %>
   <p>
-    <%= form.label :rating, style: "display: block" %>
-    <%= form.number_field :rating %>
+    <%= form.label :rating %>
+    <%= form.number_field :rating , style: "display: block"%>
   </p>
-
   <p>
-    <%= form.label :comment, style: "display: block" %>
-    <%= form.text_area :comment %>
+    <%= form.label :comment %>
+    <%= form.text_area :comment, style: "display: block" %>
   </p>
-
   <p>
     <%= form.submit %>
   </p>

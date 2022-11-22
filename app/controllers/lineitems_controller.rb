@@ -23,9 +23,6 @@ class LineitemsController < ApplicationController
     @lineitems = @order.lineitems
   end
 
-  def reset_lineitems_seesion
-    reset_session
-  end
 
   private
   
