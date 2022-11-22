@@ -12,7 +12,7 @@
               <div class="card-body p-4 p-lg-5 text-black">
               <h2>Sign up</h2>
 
-              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= nested_form_for([resource_name, resource.with_address], url: registration_path(resource_name)) do |f| %>
                 <%= render "users/shared/error_messages", resource: resource %>
 
                 <div class="field">
@@ -47,9 +47,7 @@
                   <%= f.collection_radio_buttons :role_ids, Role.all, :id, :name %>
                 </div>
 
-                <%= f.fields_for :profile do |builder| %>
-                    <hr />
-
+                <%= f.fields_for :address do |builder| %>
                     <h2>Address Details</h2>
 
                     <div class="field">

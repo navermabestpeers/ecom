@@ -4,12 +4,8 @@
 
 <p><%= @product.price %></p>
 
-
-
 <h2>Reviews</h2>
 <%= render @product.reviews %>
-
-
 
 <h2>Add a comment:</h2>
 <%= render 'reviews/form', product: @product, review: @review %>

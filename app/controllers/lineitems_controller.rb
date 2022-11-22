@@ -3,6 +3,8 @@ class LineitemsController < ApplicationController
     @order = current_order
     @lineitem = @order.lineitems.new(lineitem_params)
     @order.save
+    redirect_to carts_path
+    
     if user_signed_in?
       current_user.orders << @order
     end
@@ -22,7 +24,6 @@ class LineitemsController < ApplicationController
     @lineitem.destroy
     @lineitems = @order.lineitems
   end
-
 
   private
   

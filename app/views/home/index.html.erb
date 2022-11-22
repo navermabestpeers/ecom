@@ -1,33 +1,30 @@
-					<h1>Products for sale</h1>
-					<% if !user_signed_in? %>
-							<div class="jumbotron">
-								<p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
-							</div>
-					<% end %>
-					<% @products.each do |product| %>
-						<div class="well">
-							<div class="row">
-								<div class="col-sm-8">
-									<h3><%= link_to product.title, product %></h3>
-									<h4><%= @avg_review %><h4>
-								</div>
-								<div class="col-sm-4">
-									<div class="pull-right">
-									<%= form_for(@lineitem, remote: true) do |f| %>
-										<%= f.hidden_field :product_id, value: product.id %>
-										<h5><%= product.price %></h5>
-										<div class="form-group">
-											<%= f.text_field :quantity, value: 1, min: 1, class: 'form-control' %>
-										</div>
-										
-										<%= f.submit "Add to cart", class: 'btn btn-primary btn-sm' %>
-									<% end %>
-									
-									</div>
-								</div>
-							</div>
-						</div>
-					<% end %>
+<h1>Products for sale</h1>
+<% if !user_signed_in? %>
+	<div class="jumbotron">
+	<p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+	</div>
+<% end %>
+<% @products.each do |product| %>
+	<div class="well">
+	  <div class="row">
+			<div class="col-sm-8">
+				<h3><%= link_to product.title, product %></h3>
+			</div>
+			<div class="col-sm-4">
+			  <div class="pull-right">
+          <%= form_for(@lineitem, remote: true) do |f| %>
+            <%= f.hidden_field :product_id, value: product.id %>
+            <h5><%= product.price %></h5>
+            <div class="form-group">
+              <%= f.text_field :quantity, value: 1, min: 1, class: 'form-control' %>
+            </div>
+            <%= f.submit "Add to cart", class: 'btn btn-primary btn-sm' %>
+          <% end %>
+			  </div>
+			</div>
+		</div>
+	</div>
+<% end %>
 
 
 					

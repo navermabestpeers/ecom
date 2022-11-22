@@ -6,6 +6,7 @@
 
 Total Price = <%= @order.subtotal %>
 <br>
-<strong>Cancel your order</strong>
-
-<%= link_to 'Cancel order', cancel_order_path(@order) %>
+<div>
+  <strong>Cancel your order</strong>
+  <%= link_to 'Cancel order', cancel_order_path(@order) %>
+</div>

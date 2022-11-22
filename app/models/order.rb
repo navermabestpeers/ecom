@@ -11,12 +11,14 @@ class Order < ApplicationRecord
 	end
 
 	private
-		def set_subtotal
-			self[:subtotal] = subtotal
-		end
 
-    def assign_default_status
-      self.status = "processing"
-    end
+
+	def set_subtotal
+		self[:subtotal] = subtotal
+	end
+
+  def assign_default_status
+    self.status = "processing"
+  end
 end
 

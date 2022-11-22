@@ -1,5 +1,4 @@
 class PaymentsController < ApplicationController
-
   def show
     @order = Order.last
   end
@@ -17,6 +16,7 @@ class PaymentsController < ApplicationController
   end
   
   private
+  
     def payments_params
       params.require(:payment).permit(:payment_mode).merge(order_id: current_order.id)
     end
