@@ -1,7 +1,6 @@
 class PaymentsController < ApplicationController
   def show
-    #--------------we need to change hear only------------------
-    @order = current_order
+    @order = current_user.orders.last
   end
   
   def new

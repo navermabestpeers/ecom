@@ -15,6 +15,7 @@
     <% end %>
   </ul>
   <p>Order status: <%= order.status %></p>
+  <p>Payment id: <%= order.payment.id %></p>
   <% if order.status == "shipped" %>
     <%= link_to 'Cancel order', cancel_order_path(order) %>
   <% end %>
