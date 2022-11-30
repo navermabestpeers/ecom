@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
     if current_user.has_role? :seller
       products_path
     else
+      if !session[:order_id].nil?
+        @order = Order.find(session[:order_id])
+        @lineitems = @order.lineitems
+        if !current_user.orders.last.nil? && current_user.orders.last.status == "processing"
+          @lineitems.update!(order_id: current_user.orders.last.id )
+          session.delete(:order_id) 
+        end
+      end
       root_path
     end
   end
