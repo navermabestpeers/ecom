@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :user
-  has_many :lineitems  
+  has_many :lineitems
   has_many :reviews
 
   validates :title, presence: true, length: { in: 2..25 }

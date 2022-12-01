@@ -3,6 +3,10 @@ class Order < ApplicationRecord
   has_many :lineitems, dependent: :destroy
   has_one :payment
 
+  validates :subtotal, presence: true
+  validates :user_id, presence: true
+  validates :status, presence: true
+
   before_save :set_subtotal
   after_commit :assign_default_status
 
