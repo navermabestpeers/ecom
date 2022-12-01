@@ -15,6 +15,9 @@ class ApplicationController < ActionController::Base
         if !current_user.orders.last.nil? && current_user.orders.last.status == "processing"
           @lineitems.update!(order_id: current_user.orders.last.id )
           session.delete(:order_id) 
+        else
+          @order.update!(status: "processing")
+          current_user.orders << @order
         end
       end
       root_path
