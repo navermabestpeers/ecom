@@ -1,14 +1,14 @@
 module ApplicationHelper
 
-  def current_order    
+  def current_order
     if user_signed_in?
       @order = current_user.orders.last
       if @order.nil?
         @order = Order.new
-      elsif @order.status == "processing"
+      elsif @order.status == 'processing'
         @order
       else
-        Order.new      
+        Order.new
       end
     elsif !session[:order_id].nil?
       Order.find(session[:order_id])
