@@ -2,19 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   it 'has a valid factory' do
-    expect(FactoryBot.build(:product)).to be_invalid
+    expect(build(:product)).to be_invalid
   end
 
   it 'is invalid without a title' do
-    expect(FactoryBot.build(:product, title: nil)).to be_invalid
+    expect(build(:product, title: nil)).to be_invalid
   end
 
   it 'is invalid without a description' do
-    expect(FactoryBot.build(:product, description: nil)).to be_invalid
+    expect(build(:product, description: nil)).to be_invalid
   end
 
   it 'is invalid without a price' do
-    expect(FactoryBot.build(:product, price: nil)).to be_invalid
+    expect(build(:product, price: nil)).to be_invalid
   end
 
   it { should have_many(:lineitems) }
@@ -32,12 +32,14 @@ RSpec.describe Product, type: :model do
 
   context 'attributes' do
     it 'has title' do
-      expect(FactoryBot.build(:product, title: 'Product ABC123')).to have_attributes(title: 'Product ABC123')
+      expect(build(:product, title: 'Product ABC123')).to have_attributes(title: 'Product ABC123')
     end
   end
 
   context 'validation' do
     it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:description) }
+    it { is_expected.to validate_presence_of(:price) }
+    it { is_expected.to validate_presence_of(:user_id) }
   end
 end
