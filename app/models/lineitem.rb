@@ -1,6 +1,13 @@
 class Lineitem < ApplicationRecord
   belongs_to :order
   belongs_to :product
+
+  validates :total_price, presence: true, inclusion: 1..999
+  validates :quantity, presence: true, inclusion: 1..999
+  validates :unit_price, presence: true
+  validates :product_id, presence: true
+  validates :order_id, presence: true
+
   before_save :set_unit_price
   before_save :set_total_price
 
@@ -21,9 +28,8 @@ class Lineitem < ApplicationRecord
   def set_unit_price
     self[:unit_price] = unit_price
   end
-  
+
   def set_total_price
     self[:total_price] = quantity * set_unit_price
   end
-
 end
