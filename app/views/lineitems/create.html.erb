@@ -1,5 +1,5 @@
 <% if @order.errors.any? || @lineitem.errors.any? %>
-	alert("Invalid")
+  alert("Invalid")
 <% else %>
-	<%= render 'layouts/cart' %>
+  <% carts_path %>
 <% end %>
