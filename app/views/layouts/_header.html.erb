@@ -9,12 +9,6 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="<%= root_path %>">Home</a>
         </li>
-         <li class="nav-item">
-          <% if user_signed_in? %>
-          <a class="nav-link active" aria-current="page" href="<%= orders_path %>">Your orders</a>
-          <%end%>
-        </li>
-        
       </ul>
       <div class="d-flex"> 
         <a class="nav-item" href="<%= carts_path %>"  aria-expanded="false">
@@ -23,16 +17,9 @@
           </span>  
         </a>
       </div>   
-      <% if user_signed_in? %>      
-      <div class="d-flex">
-        <a class="btn btn"> <%= button_to "Signout", destroy_user_session_path, method: :delete %></a>
-      </div>
-      
-      <% else %>
-      <div class="d-flex" role="signup/login">
-        <a class="btn btn-outline-success" href="<%= new_user_session_path %>">signup/login</a>
-      </div>
-      <% end %>
+      <ul class="navbar-nav">
+        <%= render 'layouts/session_manger' %>
+      </ul>
     </div>
   </div>
 </nav>
