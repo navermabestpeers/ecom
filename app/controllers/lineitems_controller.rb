@@ -28,6 +28,6 @@ class LineitemsController < ApplicationController
   private
 
   def lineitem_params
-    params.require(:lineitem).permit(:product_id, :quantity, :user_id)      
+    params.require(:lineitem).permit(:product_id, :quantity)      
   end
 end
