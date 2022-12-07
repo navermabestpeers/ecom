@@ -7,44 +7,39 @@
 <% end %>
 
 <% if @lineitems.size>0 %>
+<div class="row row-cols-1 row-cols-md-3 g-4">
 	<% @lineitems.each do |item| %>
-		<div class="well">
-			<div class="row">
-				<div class="col-sm-8">
-					<h3><%= item.product.title %></h3>
-				</div>
-				<div class="col-sm-4">
-					<div class="pull-right">
-					<%= form_for(item, remote: true) do |f| %>
-						<%= f.hidden_field :product_id, value: item.product.id %>
-						<h5><%= item.product.price %></h5>
-						<div class="form-group">
-							<%= f.text_field :quantity, value: item.quantity.to_i, min: 1, class: 'form-control' %>
-						</div>
-						<div class="btn-group">
-							<%= f.submit "Update Quantity", class: 'btn btn-primary' %></div>     
-						<span>Total Price: <%= item.total_price %></span>
-						<%= f.hidden_field :user_id, value: current_user %>
-					<% end %>
-           <div>
-							<%= button_to "Delete", item, method: :delete, remote: true, class: 'btn btn-danger'  %>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	<% end %>
-  <div class="col-sm-4">
-		<div class="pull-right">
-      <%= link_to "Add More item to cart", root_path %><br>
-      <script>
-        $('#cart_id').html(<%="#{current_order.lineitems.size}"%>)
-      </script>
-      <%= link_to "Price: #{current_order.subtotal}", carts_path %><br>
-      <%= link_to "Proceed to checkout", new_payment_path  %>
+  <div class="col">
+    <div class="card h-100">
+      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top" alt="Skyscrapers"/>
+      <div class="card-body">
+        <h5 class="card-title"><%= item.product.title %></h5>
+        <p class="card-text"><%=item.product.description%></p>
       </div>
-    </div>
-<% else %>
-	
+      <%= form_for(item, remote: true) do |f| %>
+        <%= f.hidden_field :product_id, value: item.product.id %>
+        <%= f.hidden_field :user_id, value: current_user %>
+        <div class="card-footer">
+          <h5><%= item.product.price %></h5>
+          <%= f.number_field :quantity, value: item.quantity.to_i, min: 1, class: 'form-control' %>
+          <div class="btn-group">
+            <%= f.submit "Update Quantity", class: 'btn btn-primary' %>
+          <% end %>
+          <div>
+            <%= button_to "Remove", item, method: :delete, remote: true, class: 'btn btn-danger'  %>
+          </div>
+          </div>
+            <br>
+          <strong>Total Price: <%= item.total_price %></strong>
+        </div>
+      </div>
+    </div>	
+  <% end %>
+</div>
+<div>
+  <%= link_to "Add More item to cart", root_path %><br>
+  <%= link_to "Price: #{current_order.subtotal}", carts_path %><br>
+  <%= link_to "Proceed to checkout", new_payment_path  %>
+</div>
 <% end %>
+	

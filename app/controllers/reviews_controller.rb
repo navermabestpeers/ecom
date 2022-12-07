@@ -3,12 +3,12 @@ class ReviewsController < ApplicationController
     @product = Product.find(params[:product_id])
     @review = current_user.reviews.create!(review_params) 
     redirect_to product_path(@product)
-  end  
+  end
 
   private
 
 
   def review_params
     params.require(:review).permit(:rating, :comment, :product_id, :user_id)
-  end  
+  end
 end

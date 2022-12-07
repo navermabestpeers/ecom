@@ -4,31 +4,26 @@
 	<p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
 	</div>
 <% end %>
+<div class="row row-cols-1 row-cols-md-3 g-4">
 <% @products.each do |product| %>
-	<div class="well">
-	  <div class="row">
-			<div class="col-sm-8">
-				<h3><%= link_to product.title, product %></h3>
+  <div class="col">
+    <div class="card h-100">
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top" alt="Skyscrapers"/>
+			<div class="card-body">
+        <h5 class="card-title"><%= link_to product.title, product %></h5>
+        <p class="card-text">
+          <%= product.description%>
+        </p>
 			</div>
-			<div class="col-sm-4">
-			  <div class="pull-right">
-          <%= form_for(@lineitem, remote: true) do |f| %>
-            <%= f.hidden_field :product_id, value: product.id %>
-            <h5><%= product.price %></h5>
-            <div class="form-group">
-              <%= f.text_field :quantity, value: 1, min: 1, class: 'form-control' %>
-            </div>
-            <%= f.submit "Add to cart", class: 'btn btn-primary btn-sm' %>
-          <% end %>
-			  </div>
+      <%= form_for(@lineitem, remote: true) do |f| %>
+        <%= f.hidden_field :product_id, value: product.id %>
+        <div class="card-footer">
+          <h5>Price: $<%= product.price %></h5>
+            <h6>Quantity<%= f.number_field :quantity, value: 1, min: 1, class: 'form-control' %></h6>
+        <%= f.submit "Add to cart", class: 'btn btn-primary btn-sm' %>
+        </div>
+      <% end %>
 			</div>
 		</div>
-	</div>
 <% end %>
-
-
-					
-
-
-
-
+</div>

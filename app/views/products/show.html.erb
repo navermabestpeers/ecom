@@ -1,10 +1,13 @@
-<h1><%= @product.title %></h1>
+<div>
+  <div class="card h-100">
+      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top" alt="Skyscrapers"/>
+  <h1><%= @product.title %></h1>
+  <strong>Product description:</strong><p><%= @product.description %></p>
+  <strong>Price:</strong><p><%= @product.price %></p>
+  </div>
+</div>
 
-<p><%= @product.description %></p>
-
-<p><%= @product.price %></p>
-
-<h2>Reviews</h2>
+<h2>Product Reviews</h2>
 <%= render @product.reviews %>
 
 <h2>Add a comment:</h2>
