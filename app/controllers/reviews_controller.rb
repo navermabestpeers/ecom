@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
     @product = Product.find(params[:product_id])
     @review = current_user.reviews.create!(review_params) 
     redirect_to product_path(@product)
-  end
+  end  
 
   private
 
