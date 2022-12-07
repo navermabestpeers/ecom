@@ -5,12 +5,9 @@ class User < ApplicationRecord
   has_many :products
   has_many :orders
   has_many :reviews, dependent: :destroy
-  has_one :address
-
-  validates :name, presence: true, length: { in: 2..100 }
-  validates :email, presence: true, length: { in: 5..100 }, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
-  validates :phone, presence: false, length: { in: 10..16 }, format: { with: /\A[\d\s-]+\z/ }, allow_blank: true
+  has_one :address  
   accepts_nested_attributes_for :address
+         
   after_create :assign_default_role
 
   def assign_default_role
@@ -21,4 +18,5 @@ class User < ApplicationRecord
     build_address if address.nil?
     self
   end
+  
 end

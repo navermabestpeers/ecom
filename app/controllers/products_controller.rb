@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = current_user.products.all
-  end
+  end  
 
   def show
     @product = Product.find(params[:id])
@@ -39,6 +39,7 @@ class ProductsController < ApplicationController
     @product.destroy
     redirect_to products_path
   end
+  
   private
 
   def product_params

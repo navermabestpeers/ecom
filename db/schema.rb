@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_01_133416) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_18_132544) do
   create_table "addresses", force: :cascade do |t|
     t.text "address_1"
     t.text "address_2"
@@ -36,6 +36,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_133416) do
 
   create_table "orders", force: :cascade do |t|
     t.float "subtotal"
+    t.float "total"
+    t.string "shipping"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
